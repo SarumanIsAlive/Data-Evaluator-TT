@@ -20,12 +20,12 @@ public class ParserImpl implements Parser {
         if (validator.isValid(line)) {
             String[] query = line.split(REGEX_SPACE);
             if (query[0].equals(TYPE_OF_LINE_C)) {
-                return new QueryDto(query[0], query[1].split(REGEX_DOT),
+                return new QueryDto(TYPE_OF_LINE_C, query[1].split(REGEX_DOT),
                         query[2].split(REGEX_DOT), query[3], query[4].split(REGEX_DASH),
                         Integer.parseInt(query[5]));
             }
             if (query[0].equals(TYPE_OF_LINE_D)) {
-                return new QueryDto(query[0], query[1].split(REGEX_DOT),
+                return new QueryDto(TYPE_OF_LINE_D, query[1].split(REGEX_DOT),
                         query[2].split(REGEX_DOT), query[3], query[4].split(REGEX_DASH));
             }
         }

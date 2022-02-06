@@ -3,25 +3,25 @@ package dto;
 import java.util.Arrays;
 
 public class QueryDto {
-    public String typeOfQuery;
+    public String operationType;
     public String[] service;
     public String[] question;
     public String responseType;
     public String[] dates;
     public int time;
 
-    public QueryDto(String typeOfQuery, String[] service, String[] question,
-                    String responseType, String[] dates) {
-        this.typeOfQuery = typeOfQuery;
+    public QueryDto(String operationType, String[] service,
+                    String[] question, String responseType, String[] dates) {
+        this.operationType = operationType;
         this.service = service;
         this.question = question;
         this.responseType = responseType;
         this.dates = dates;
     }
 
-    public QueryDto(String typeOfQuery, String[] service, String[] question,
-                    String responseType, String[] dates, int time) {
-        this.typeOfQuery = typeOfQuery;
+    public QueryDto(String operationType, String[] service,
+                    String[] question, String responseType, String[] dates, int time) {
+        this.operationType = operationType;
         this.service = service;
         this.question = question;
         this.responseType = responseType;
@@ -29,8 +29,8 @@ public class QueryDto {
         this.time = time;
     }
 
-    public String getTypeOfQuery() {
-        return typeOfQuery;
+    public String getOperationType() {
+        return operationType;
     }
 
     public String[] getService() {
@@ -55,7 +55,7 @@ public class QueryDto {
 
     @Override
     public String toString() {
-        return "QueryDto{" + "typeOfQuery='" + typeOfQuery + '\''
+        return "QueryDto{" + "operationType=" + operationType
                 + ", service=" + Arrays.toString(service)
                 + ", question=" + Arrays.toString(question)
                 + ", responseType='" + responseType + '\''

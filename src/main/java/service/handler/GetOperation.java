@@ -1,44 +1,33 @@
-package service.creator;
+package service.handler;
 
 import dto.QueryDto;
+import storage.Storage;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-public class CreatorImpl implements Creator {
+public class GetOperation implements OperationHandler {
     private static final String DATE_FORMAT = "dd.MM.yyyy";
-    private static final String TYPE_OF_LINE_C = "C";
-    private static final String TYPE_OF_LINE_D = "D";
 
     @Override
-    public List<String> createReport(List<QueryDto> dtoList) {
+    public boolean apply(QueryDto typeOfQueryD) {
         int counter = 0;
         int sum = 0;
-        List<String> report = new ArrayList<>();
-        for (int i = 0; i < dtoList.size(); i++) {
-            if (dtoList.get(i).getTypeOfQuery().equals(TYPE_OF_LINE_D)) {
-                counter = 0;
-                sum = 0;
-                for (int j = 0; j < i; j++) {
-                   if (equalTypeOfService(dtoList.get(i).getService(), dtoList.get(j).getService())
-                           && equalTypeOfQuestion(dtoList.get(i).getQuestion(), dtoList.get(j).getQuestion())
-                           && dtoList.get(i).getResponseType().equals(dtoList.get(j).getResponseType())
-                           && equalDates(dtoList.get(i).getDates(), dtoList.get(j).getDates())
-                           && dtoList.get(j).getTypeOfQuery().equals(TYPE_OF_LINE_C)) {
-                       counter++;
-                       sum += dtoList.get(j).getTime();
-                   }
-                }
-                if (counter == 0) {
-                    report.add("-" + "\n");
-                } else {
-                    report.add(sum / counter + "\n");
-                }
+        for (int i = 0; i < Storage.storage.size(); i++) {
+            if (equalTypeOfService(typeOfQueryD.getService(), Storage.storage.get(i).getService())
+                    && equalTypeOfQuestion(typeOfQueryD.getQuestion(), Storage.storage.get(i).getQuestion())
+                    && typeOfQueryD.getResponseType().equals(Storage.storage.get(i).getResponseType())
+                    && equalDates(typeOfQueryD.getDates(), Storage.storage.get(i).getDates())) {
+                counter++;
+                sum += Storage.storage.get(i).getTime();
             }
         }
-        return report;
+        if (counter == 0) {
+            Storage.report.add("-" + "\n");
+        } else {
+            Storage.report.add(sum / counter + "\n");
+        }
+        return true;
     }
 
     public boolean equalTypeOfService(String[] typeOfQueryD, String[] typeOfQueryC) {
