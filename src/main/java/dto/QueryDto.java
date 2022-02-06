@@ -53,10 +53,6 @@ public class QueryDto {
         return time;
     }
 
-    public void setTypeOfQuery(String typeOfQuery) {
-        this.typeOfQuery = typeOfQuery;
-    }
-
     @Override
     public String toString() {
         return "QueryDto{" + "typeOfQuery='" + typeOfQuery + '\''
