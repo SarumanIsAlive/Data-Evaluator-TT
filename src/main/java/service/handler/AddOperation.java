@@ -1,12 +1,12 @@
 package service.handler;
 
 import dto.QueryDto;
-import storage.Storage;
+import storage.QueryStorage;
 
 public class AddOperation implements OperationHandler {
     @Override
     public boolean apply(QueryDto queryDto) {
-        Storage.storage.add(queryDto);
+        QueryStorage.storage.add(queryDto);
         return true;
     }
 }

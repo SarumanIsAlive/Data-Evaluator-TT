@@ -10,7 +10,7 @@ import service.reader.MyReaderImpl;
 import service.validator.ValidatorImpl;
 import service.writer.MyWriter;
 import service.writer.MyWriterImpl;
-import storage.Storage;
+import storage.ReportStorage;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +32,6 @@ public class Main {
                 .skip(1)
                 .map(parser::parseLine)
                 .forEach(queryDto -> handlers.get(queryDto.getOperationType()).apply(queryDto));
-        myWriter.writeToFile(Storage.report, OUTPUT_FILE_DESTINATION);
+        myWriter.writeToFile(ReportStorage.report, OUTPUT_FILE_DESTINATION);
     }
 }

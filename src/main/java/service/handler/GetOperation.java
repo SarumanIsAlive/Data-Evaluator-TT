@@ -1,32 +1,36 @@
 package service.handler;
 
 import dto.QueryDto;
-import storage.Storage;
+import storage.QueryStorage;
+import storage.ReportStorage;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class GetOperation implements OperationHandler {
     private static final String DATE_FORMAT = "dd.MM.yyyy";
     private static final String ALL_MATCHES = "*";
+    private static final List<QueryDto> STORAGE= QueryStorage.storage;
+    private static final List<String> REPORT = ReportStorage.report;
 
     @Override
     public boolean apply(QueryDto typeOfQueryD) {
         int counter = 0;
         int sum = 0;
-        for (int i = 0; i < Storage.storage.size(); i++) {
-            if (equalTypeOfService(typeOfQueryD.getService(), Storage.storage.get(i).getService())
-                    && equalTypeOfQuestion(typeOfQueryD.getQuestion(), Storage.storage.get(i).getQuestion())
-                    && typeOfQueryD.getResponseType().equals(Storage.storage.get(i).getResponseType())
-                    && equalDates(typeOfQueryD.getDates(), Storage.storage.get(i).getDates())) {
+        for (int i = 0; i < QueryStorage.storage.size(); i++) {
+            if (equalTypeOfService(typeOfQueryD.getService(), STORAGE.get(i).getService())
+                    && equalTypeOfQuestion(typeOfQueryD.getQuestion(), STORAGE.get(i).getQuestion())
+                    && typeOfQueryD.getResponseType().equals(STORAGE.get(i).getResponseType())
+                    && equalDates(typeOfQueryD.getDates(), STORAGE.get(i).getDates())) {
                 counter++;
-                sum += Storage.storage.get(i).getTime();
+                sum += STORAGE.get(i).getTime();
             }
         }
         if (counter == 0) {
-            Storage.report.add("-" + "\n");
+            REPORT.add("-" + "\n");
         } else {
-            Storage.report.add(sum / counter + "\n");
+            REPORT.add(sum / counter + "\n");
         }
         return true;
     }
@@ -78,15 +82,15 @@ public class GetOperation implements OperationHandler {
                 Date afterDate = format.parse(typeOfQueryD[1]);
                 return inDate.after(beforeDate) && inDate.before(afterDate);
             } catch (ParseException exception) {
-                throw new RuntimeException("Cant parse data!", exception);
+                throw new RuntimeException("Can't parse date to variable", exception);
             }
         } else {
             try {
-                Date inDateD = format.parse(typeOfQueryD[0]);
-                Date inDateC = format.parse(typeOfQueryC[0]);
-                return inDateC.equals(inDateD);
+                Date inDateTypeD = format.parse(typeOfQueryD[0]);
+                Date inDateTypeC = format.parse(typeOfQueryC[0]);
+                return inDateTypeC.equals(inDateTypeD);
             } catch (ParseException exception) {
-                throw new RuntimeException("Cant parse data!", exception);
+                throw new RuntimeException("Can't parse date to variable", exception);
             }
         }
     }

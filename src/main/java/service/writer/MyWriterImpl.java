@@ -11,7 +11,7 @@ public class MyWriterImpl implements MyWriter {
                 bufferedWriter.write(line);
             }
         } catch (Exception exception) {
-            throw new RuntimeException("Can't write data to the file " + fileName, exception);
+            throw new RuntimeException("Can't write data to the file: " + fileName, exception);
         }
     }
 }

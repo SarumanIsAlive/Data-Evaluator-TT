@@ -11,7 +11,7 @@ public class MyReaderImpl implements MyReader {
         try {
             return Files.readAllLines(Paths.get(fileName));
         } catch (IOException exception) {
-            throw new RuntimeException("Can't read data from the file "
+            throw new RuntimeException("Can't read data from the file: "
                     + fileName, exception);
         }
     }
