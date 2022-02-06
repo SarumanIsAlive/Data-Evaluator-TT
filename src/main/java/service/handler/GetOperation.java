@@ -31,6 +31,9 @@ public class GetOperation implements OperationHandler {
     }
 
     public boolean equalTypeOfService(String[] typeOfQueryD, String[] typeOfQueryC) {
+        if (typeOfQueryD[0].equals("*")) {
+            return true;
+        }
         int counter = 0;
         for (int i = 0; i < typeOfQueryD.length; i++) {
             try {
@@ -62,6 +65,9 @@ public class GetOperation implements OperationHandler {
     }
 
     public boolean equalDates(String[] typeOfQueryD, String[] typeOfQueryC) {
+        if (typeOfQueryD[0].equals("*")) {
+            return true;
+        }
         SimpleDateFormat format = new SimpleDateFormat();
         format.applyPattern(DATE_FORMAT);
         if (typeOfQueryD.length > 1) {
