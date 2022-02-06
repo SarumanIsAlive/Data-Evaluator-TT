@@ -8,6 +8,7 @@ import java.util.Date;
 
 public class GetOperation implements OperationHandler {
     private static final String DATE_FORMAT = "dd.MM.yyyy";
+    private static final String ALL_MATCHES = "*";
 
     @Override
     public boolean apply(QueryDto typeOfQueryD) {
@@ -31,7 +32,7 @@ public class GetOperation implements OperationHandler {
     }
 
     public boolean equalTypeOfService(String[] typeOfQueryD, String[] typeOfQueryC) {
-        if (typeOfQueryD[0].equals("*")) {
+        if (typeOfQueryD[0].equals(ALL_MATCHES)) {
             return true;
         }
         int counter = 0;
@@ -51,7 +52,7 @@ public class GetOperation implements OperationHandler {
         int counter = 0;
         for (int i = 0; i < typeOfQueryD.length; i++) {
             try {
-                if (typeOfQueryD[i].equals("*")) {
+                if (typeOfQueryD[i].equals(ALL_MATCHES)) {
                     return true;
                 }
                 if (typeOfQueryD[i].equals(typeOfQueryC[i])) {
@@ -65,7 +66,7 @@ public class GetOperation implements OperationHandler {
     }
 
     public boolean equalDates(String[] typeOfQueryD, String[] typeOfQueryC) {
-        if (typeOfQueryD[0].equals("*")) {
+        if (typeOfQueryD[0].equals(ALL_MATCHES)) {
             return true;
         }
         SimpleDateFormat format = new SimpleDateFormat();
