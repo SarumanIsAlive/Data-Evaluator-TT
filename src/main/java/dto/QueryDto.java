@@ -10,7 +10,8 @@ public class QueryDto {
     public String[] dates;
     public int time;
 
-    public QueryDto(String typeOfQuery, String[] service, String[] question, String responseType, String[] dates) {
+    public QueryDto(String typeOfQuery, String[] service, String[] question,
+                    String responseType, String[] dates) {
         this.typeOfQuery = typeOfQuery;
         this.service = service;
         this.question = question;
@@ -18,7 +19,8 @@ public class QueryDto {
         this.dates = dates;
     }
 
-    public QueryDto(String typeOfQuery, String[] service, String[] question, String responseType, String[] dates, int time) {
+    public QueryDto(String typeOfQuery, String[] service, String[] question,
+                    String responseType, String[] dates, int time) {
         this.typeOfQuery = typeOfQuery;
         this.service = service;
         this.question = question;
