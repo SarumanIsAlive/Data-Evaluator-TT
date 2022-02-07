@@ -69,9 +69,6 @@ public class GetOperation implements OperationHandler {
     }
 
     public boolean equalDates(String[] typeOfQueryD, String[] typeOfQueryC) {
-        if (typeOfQueryD[0].equals(ALL_MATCHES)) {
-            return true;
-        }
         SimpleDateFormat format = new SimpleDateFormat();
         format.applyPattern(DATE_FORMAT);
         if (typeOfQueryD.length > 1) {
