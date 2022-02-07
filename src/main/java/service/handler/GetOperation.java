@@ -87,7 +87,7 @@ public class GetOperation implements OperationHandler {
             try {
                 Date inDateTypeD = format.parse(typeOfQueryD[0]);
                 Date inDateTypeC = format.parse(typeOfQueryC[0]);
-                return inDateTypeC.equals(inDateTypeD);
+                return inDateTypeC.equals(inDateTypeD) || inDateTypeC.after(inDateTypeD);
             } catch (ParseException exception) {
                 throw new RuntimeException("Can't parse date to variable", exception);
             }
