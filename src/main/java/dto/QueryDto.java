@@ -1,6 +1,7 @@
 package dto;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class QueryDto {
     public String operationType;
@@ -51,6 +52,25 @@ public class QueryDto {
 
     public int getTime() {
         return time;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        QueryDto queryDto = (QueryDto) o;
+        return time == queryDto.time && Objects.equals(operationType, queryDto.operationType)
+                && Arrays.equals(service, queryDto.service) && Arrays.equals(question, queryDto.question)
+                && Objects.equals(responseType, queryDto.responseType) && Arrays.equals(dates, queryDto.dates);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(operationType, responseType, time);
+        result = 31 * result + Arrays.hashCode(service);
+        result = 31 * result + Arrays.hashCode(question);
+        result = 31 * result + Arrays.hashCode(dates);
+        return result;
     }
 
     @Override

@@ -14,6 +14,6 @@ public class ValidatorImpl implements Validator {
         return (lineArr[0].equals(TYPE_OF_LINE_C) || lineArr[0].equals(TYPE_OF_LINE_D))
                 && lineArr[1].length() >= 1 && lineArr[2].length() >= 1
                 && (lineArr[3].equals(TYPE_OF_RESPONSE_P) || lineArr[3].equals(TYPE_OF_RESPONSE_N))
-                && lineArr[4].length() >= MIN_DATE_LENGTH;
+                && lineArr[4].length() >= MIN_DATE_LENGTH && line.length() > 0;
     }
 }
