@@ -11,20 +11,19 @@ import java.util.List;
 public class GetOperation implements OperationHandler {
     private static final String DATE_FORMAT = "dd.MM.yyyy";
     private static final String ALL_MATCHES = "*";
-    private static final List<QueryDto> STORAGE= QueryStorage.storage;
     private static final List<String> REPORT = ReportStorage.report;
 
     @Override
     public boolean apply(QueryDto typeOfQueryD) {
         int counter = 0;
         int sum = 0;
-        for (int i = 0; i < QueryStorage.storage.size(); i++) {
-            if (equalTypeOfService(typeOfQueryD.getService(), STORAGE.get(i).getService())
-                    && equalTypeOfQuestion(typeOfQueryD.getQuestion(), STORAGE.get(i).getQuestion())
-                    && typeOfQueryD.getResponseType().equals(STORAGE.get(i).getResponseType())
-                    && equalDates(typeOfQueryD.getDates(), STORAGE.get(i).getDates())) {
+        for (QueryDto dto : QueryStorage.storage) {
+            if (equalTypeOfService(typeOfQueryD.getService(), dto.getService())
+                    && equalTypeOfQuestion(typeOfQueryD.getQuestion(), dto.getQuestion())
+                    && typeOfQueryD.getResponseType().equals(dto.getResponseType())
+                    && equalDates(typeOfQueryD.getDates(), dto.getDates())) {
                 counter++;
-                sum += STORAGE.get(i).getTime();
+                sum += dto.getTime();
             }
         }
         if (counter == 0) {

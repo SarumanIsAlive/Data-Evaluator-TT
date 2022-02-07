@@ -16,7 +16,7 @@ public class MyReaderTest {
 
     @Test
     public void readFromFile_correctFile_ok() {
-        String fileName = "src/test/resourcesTest/inputTest.txt";
+        String fileName = "src/test/resources/inputTest.txt";
         List<String> expected = List.of("C 1.1 8.15.1 P 15.10.2012 83",
         "C 1 10.1 P 01.12.2012 65",
         "C 1.1 5.5.1 P 01.11.2012 117",

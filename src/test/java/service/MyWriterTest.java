@@ -21,7 +21,7 @@ public class MyWriterTest {
     @Test
     public void writeToFile_correctWork_ok() throws IOException {
         List<String> report = List.of("report test#1");
-        String filePath = "src/test/resourcesTest/outputTest.txt";
+        String filePath = "src/test/resources/outputTest.txt";
         fileWriter.writeToFile(report,filePath);
         List<String> actual = List.of("report test#1");
         List<String> expected = Files.readAllLines(Paths.get(filePath));

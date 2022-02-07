@@ -1,4 +1,3 @@
-
 import model.OperationType;
 import service.handler.AddOperation;
 import service.handler.GetOperation;
