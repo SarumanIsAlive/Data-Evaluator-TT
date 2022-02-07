@@ -11,9 +11,11 @@ public class ValidatorImpl implements Validator {
     @Override
     public boolean isValid(String line) {
         String[] lineArr = line.split(REGEX_SPACE);
-        return (lineArr[0].equals(TYPE_OF_LINE_C) || lineArr[0].equals(TYPE_OF_LINE_D))
-                && lineArr[1].length() >= 1 && lineArr[2].length() >= 1
+        return lineArr[1].length() >= 1 && lineArr[1].length() <= 4
+                && lineArr[2].length() >= 1 && lineArr[2].length() <= 7
                 && (lineArr[3].equals(TYPE_OF_RESPONSE_P) || lineArr[3].equals(TYPE_OF_RESPONSE_N))
-                && lineArr[4].length() >= MIN_DATE_LENGTH && line.length() > 0;
+                && lineArr[4].length() >= MIN_DATE_LENGTH && line.length() > 0
+                && ((lineArr.length <= 6 && lineArr[0].equals(TYPE_OF_LINE_C))
+                || (lineArr.length <= 5 && lineArr[0].equals(TYPE_OF_LINE_D)));
     }
 }
