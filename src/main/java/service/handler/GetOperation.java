@@ -35,12 +35,20 @@ public class GetOperation implements OperationHandler {
     }
 
     public boolean equalTypeOfService(String[] typeOfQueryD, String[] typeOfQueryC) {
-        if (typeOfQueryD[0].equals(ALL_MATCHES)) {
-            return true;
-        }
         int counter = 0;
         for (int i = 0; i < typeOfQueryD.length; i++) {
             try {
+                if (typeOfQueryD[i].equals(ALL_MATCHES)
+                        && Integer.parseInt(typeOfQueryC[0]) <= 10
+                        && typeOfQueryC.length == 1) {
+                    return true;
+                }
+                if (typeOfQueryD[i].equals(ALL_MATCHES)
+                        && Integer.parseInt(typeOfQueryC[0]) <= 10
+                        && Integer.parseInt(typeOfQueryC[1]) <= 3
+                        && typeOfQueryC.length == 2) {
+                    return true;
+                }
                 if (typeOfQueryD[i].equals(typeOfQueryC[i])) {
                     counter++;
                 }
@@ -55,7 +63,22 @@ public class GetOperation implements OperationHandler {
         int counter = 0;
         for (int i = 0; i < typeOfQueryD.length; i++) {
             try {
-                if (typeOfQueryD[i].equals(ALL_MATCHES)) {
+                if (typeOfQueryD[i].equals(ALL_MATCHES)
+                        && Integer.parseInt(typeOfQueryC[0]) <= 10
+                        && typeOfQueryC.length == 1) {
+                    return true;
+                }
+                if (typeOfQueryD[i].equals(ALL_MATCHES)
+                        && Integer.parseInt(typeOfQueryC[0]) <= 10
+                        && Integer.parseInt(typeOfQueryC[1]) <= 20
+                        && typeOfQueryC.length == 2) {
+                    return true;
+                }
+                if (typeOfQueryD[i].equals(ALL_MATCHES)
+                        && Integer.parseInt(typeOfQueryC[0]) <= 10
+                        && Integer.parseInt(typeOfQueryC[1]) <= 20
+                        && Integer.parseInt(typeOfQueryC[2]) <= 5
+                        && typeOfQueryC.length == 3) {
                     return true;
                 }
                 if (typeOfQueryD[i].equals(typeOfQueryC[i])) {

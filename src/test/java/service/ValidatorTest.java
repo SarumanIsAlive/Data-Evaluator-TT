@@ -22,10 +22,10 @@ public class ValidatorTest {
         assertTrue(actual);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void isValid_null_notOk() {
         String line = null;
-        validator.isValid(line);
+        assertFalse(validator.isValid(line));
     }
 
     @Test

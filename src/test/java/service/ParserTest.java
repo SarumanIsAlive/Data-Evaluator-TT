@@ -30,7 +30,7 @@ public class ParserTest {
         assertEquals(actual, expected);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = RuntimeException.class)
     public void parseLine_null_notOk() {
         String line = null;
         parser.parseLine(line);
